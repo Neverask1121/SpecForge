@@ -1,0 +1,164 @@
+# =========================
+
+# ENVIRONMENT VARIABLES
+
+# =========================
+
+.env
+.env.*
+!.env.example
+
+# =========================
+
+# PYTHON VIRTUAL ENVIRONMENTS
+
+# =========================
+
+venv/
+.venv/
+env/
+ENV/
+
+# =========================
+
+# PYTHON CACHE
+
+# =========================
+
+**pycache**/
+*.py[cod]
+*$py.class
+
+# =========================
+
+# PYTHON BUILD FILES
+
+# =========================
+
+build/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+
+*.egg-info/
+*.egg
+
+# =========================
+
+# TESTING
+
+# =========================
+
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# =========================
+
+# TYPE CHECKERS
+
+# =========================
+
+.mypy_cache/
+.pyre/
+.ruff_cache/
+
+# =========================
+
+# JUPYTER
+
+# =========================
+
+.ipynb_checkpoints/
+
+# =========================
+
+# IDEs
+
+# =========================
+
+.vscode/
+.idea/
+
+# =========================
+
+# OPERATING SYSTEM
+
+# =========================
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+
+# LOGS
+
+# =========================
+
+*.log
+
+# =========================
+
+# DATABASES
+
+# =========================
+
+*.db
+*.sqlite
+*.sqlite3
+
+# =========================
+
+# TEMP FILES
+
+# =========================
+
+tmp/
+temp/
+
+# =========================
+
+# PROJECT OUTPUTS
+
+# =========================
+
+benchmark_results/
+reports/
+artifacts/
+
+# =========================
+
+# SECRETS
+
+# =========================
+
+secrets.json
+credentials.json
+apikeys.json
+
+# =========================
+
+# PYTHON BYTECODE
+
+# =========================
+
+*.pyc
+*.pyo
+*.pyd
+
+# =========================
+
+# GIT HISTORY FILTER FILES
+
+# =========================
+
+.git-rewrite/
