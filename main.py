@@ -1,6 +1,8 @@
 import json
 
 from generators.ir_generator import generate_ir
+from generators.assumption_generator import generate_assumptions
+from generators.architecture_generator import generate_architecture
 from generators.db_generator import generate_db_schema
 from generators.api_generator import generate_api_schema
 from generators.ui_generator import generate_ui_schema
@@ -9,7 +11,10 @@ from generators.business_rules_generator import generate_business_rules
 from generators.final_output_generator import generate_final_output
 
 from validators.ir_validator import validate_ir
+from validators.schema_validator import validate_schema
+from validators.reference_validator import validate_references
 from validators.consistency_validator import validate_consistency
+from validators.business_rule_validator import validate_business_rules
 
 from repair.repair_engine import repair_ir
 from repair.repair_log import RepairLog
@@ -27,10 +32,14 @@ repair_log = RepairLog()
 # Generate IR
 
 ir = generate_ir(requirement)
+assumptions = generate_assumptions(ir)
+architecture = generate_architecture(ir)
 
 # Initial validation
 
-validation_errors = validate_ir(ir)
+validation_errors = []
+validation_errors.extend(validate_ir(ir))
+validation_errors.extend(validate_schema(ir))
 
 # Repair if needed
 
@@ -38,12 +47,15 @@ if validation_errors:
 
     ir = repair_ir(
         ir,
-        repair_log
+        repair_log,
+        issues=[{"section": "relationships", "message": "IR validation failed", "fix": "Normalized invalid relationships"}]
     )
 
 # Revalidate after repair
 
-validation_errors = validate_ir(ir)
+validation_errors = []
+validation_errors.extend(validate_ir(ir))
+validation_errors.extend(validate_schema(ir))
 
 # Generate schemas
 
@@ -69,6 +81,22 @@ validation_errors.extend(
     consistency_errors
 )
 
+validation_errors.extend(
+    validate_references(
+        ir,
+        api_schema,
+        ui_schema,
+        auth_schema
+    )
+)
+
+validation_errors.extend(
+    validate_business_rules(
+        ir,
+        business_rules
+    )
+)
+
 # Runtime simulation
 
 result, message = simulate_request(
@@ -87,6 +115,8 @@ print("Message:", message)
 
 final_output = generate_final_output(
     ir=ir,
+    architecture=architecture,
+    assumptions=assumptions,
     db_schema=db_schema,
     api_schema=api_schema,
     ui_schema=ui_schema,

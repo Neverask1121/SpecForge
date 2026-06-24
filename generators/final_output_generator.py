@@ -1,5 +1,7 @@
 def generate_final_output(
     ir,
+    architecture,
+    assumptions,
     db_schema,
     api_schema,
     ui_schema,
@@ -15,9 +17,9 @@ def generate_final_output(
             "name": ir.app_name
         },
 
-        "assumptions": [
-            "Generated automatically from requirement"
-        ],
+        "assumptions": assumptions,
+
+        "architecture": architecture,
 
         "ui": ui_schema,
 

@@ -34,4 +34,13 @@ def validate_ir(ir: IR):
                 f"Invalid relation type: {rel.relation_type}"
             )
 
+    if not ir.app_name or not ir.app_name.strip():
+        errors.append("App name is required")
+
+    if not ir.entities:
+        errors.append("At least one entity is required")
+
+    if not ir.roles:
+        errors.append("At least one role is required")
+
     return errors
