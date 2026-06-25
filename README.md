@@ -62,6 +62,28 @@ Comparison modes are available through `run_comparison_benchmarks()`:
 - `staged_validation`
 - `staged_validation_repair`
 
+## Deployment
+
+### Local Flask app
+
+```bash
+python app.py
+```
+
+Then open `http://127.0.0.1:5000/`.
+
+### Render
+
+This repository includes `render.yaml` for a simple web service deployment.
+
+1. Connect the repository to Render.
+2. Create a new web service from the repo.
+3. Render will use `render.yaml` with:
+   - build command: `pip install -r requirements.txt`
+   - start command: `gunicorn app:app`
+
+The app reads `GROQ_API_KEY` from `.env` during local runs.
+
 ## Example Output
 
 ```json

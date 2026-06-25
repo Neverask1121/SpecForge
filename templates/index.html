@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Application Compiler</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <p class="eyebrow">AI Application Compiler</p>
+      <h1>Generate structured application specs from plain English.</h1>
+      <p class="lede">Enter a product requirement, run the existing compiler pipeline, and inspect the final JSON output.</p>
+    </section>
+
+    <section class="panel">
+      <label for="prompt">Prompt</label>
+      <textarea id="prompt" rows="8" placeholder="Build a CRM with login, contacts, dashboard, role-based access and premium plans."></textarea>
+
+      <div class="actions">
+        <button id="generateBtn">Generate</button>
+        <button id="copyBtn" class="secondary" disabled>Copy</button>
+      </div>
+
+      <div id="loading" class="loading hidden">Generating...</div>
+      <div id="error" class="error hidden"></div>
+      <pre id="output" class="output hidden"></pre>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

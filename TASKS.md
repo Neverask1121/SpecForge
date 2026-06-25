@@ -9,3 +9,6 @@
 - [x] Update final output shape to include architecture and assumptions
 - [x] Update README with pipeline, usage, example output, benchmark, and limitations
 - [x] Create and maintain PROJECT_STATUS.md
+- [x] Add minimal Flask wrapper with template and static assets
+- [x] Add deployment config for Render
+- [x] Verify `python app.py`, `GET /`, and `POST /generate`
